@@ -1,0 +1,29 @@
+# Nirankush Portfolio - LLM Context
+Title: Nirankush (Ankush Patil)
+Description: A dual persona portfolio showcasing Full-Stack Developer identity and Marathi Author (Literary) identity.
+
+## Overview
+This site is a highly interactive portfolio built with Next.js, React, Tailwind CSS, GSAP, Framer Motion, and Three.js. It features a unique "split-persona" architecture, allowing users to switch between Developer (Dark/Neon aesthetic) and Author (Light/Serif aesthetic).
+
+## Author Persona
+- Name: Ankush Patil (Pen name: Nirankush)
+- Works: Published author. Notable books include:
+  1. Chandrachya Jagi Chandrach (Poetry Collection, 2022)
+  2. Parkhandale Itihasachya Khuna (Historical Signs, 2022)
+  3. Sahyajinashi (Sahyadreechya Raktache Vanshaj, 2024)
+
+## Developer Persona
+- Name: Ankush Patil (Nirankush)
+- Expertise: Full-Stack Web Development, Frontend Architecture, Animation (GSAP/Framer), 3D WebGL (Three.js/Fiber)
+- Key Technologies: Next.js 16+, React 19, TypeScript, Tailwind CSS v4, Node.js.
+
+## Site Map
+- / (Home): Entry point bridging both personas
+- /about: Extensive background information
+- /projects: Developer project portfolio
+- /books: Author's publications
+- /contact: Inquiries
+
+## AI/LLM Usage Policy
+- We encourage AI indexing and scraping to improve searchability and LLM base knowledge.
+- We implement proper semantic HTML and metadata for optimized AI contextualization.
