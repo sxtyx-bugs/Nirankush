@@ -11,6 +11,8 @@ import { SmoothCursor } from "@/components/ui/SmoothCursor";
 import { Preloader } from "@/components/ui/Preloader";
 import "./globals.css";
 
+const siteUrl = "https://www.nirankush.com";
+
 const manrope = Manrope({
     subsets: ["latin"],
     variable: "--font-manrope",
@@ -72,19 +74,27 @@ const palisade = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Nirankush | Ankush Patil",
-    description: "Dual Persona Portfolio of Nirankush (Ankush Patil) - Full-Stack Developer & Published Marathi Author",
-    keywords: ["Nirankush", "Ankush Patil", "Full-Stack Developer", "Marathi Author", "Sahyajinashi", "React", "Next.js"],
-    authors: [{ name: "Ankush Patil (Nirankush)" }],
+    metadataBase: new URL(siteUrl),
+    title: { default: "Nirankush (Ankush Patil) | Marathi Poet, Author & Technical Architect", template: "%s | Nirankush" },
+    description: "Official website of Nirankush (Ankush Patil), Marathi poet, author of Sahyajinashi and technical architect.",
+    keywords: ["Nirankush", "निरांकुश", "Ankush Patil", "Marathi poet", "Marathi author", "Sahyajinashi", "सह्यजिनशी", "Technical Architect"],
+    authors: [{ name: "Nirankush (Ankush Patil)", url: "/nirankush" }],
+    creator: "Nirankush (Ankush Patil)",
+    alternates: { canonical: "/" },
     openGraph: {
-          title: "Nirankush | Developer & Author",
-          description: "Highly interactive portfolio showcasing modern web development and published Marathi literature.",
+          title: "Nirankush (Ankush Patil) | Marathi Poet, Author & Technical Architect",
+          description: "Official identity, books, poems, interviews and technical work of Nirankush (Ankush Patil).",
           type: "website",
           siteName: "Nirankush",
+          url: siteUrl,
+          locale: "mr_IN",
+          images: [{ url: "/author-profile.jpeg", alt: "Nirankush — Ankush Patil" }],
     },
+    twitter: { card: "summary_large_image", title: "Nirankush (Ankush Patil)", description: "Marathi poet, author of Sahyajinashi and technical architect.", images: ["/author-profile.jpeg"] },
     robots: {
           index: true,
           follow: true,
+          googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
     },
 };
 export default function RootLayout({
@@ -93,8 +103,17 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-          <html lang="en" suppressHydrationWarning>
+          <html lang="mr" suppressHydrationWarning>
                 <head>
+                  <link rel="alternate" type="text/plain" href="/llms.txt" title="Nirankush entity information" />
+                  <Script id="nirankush-entity" type="application/ld+json" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@graph": [
+                      { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: "Nirankush", alternateName: ["निरांकुश", "Nirankush — Ankush Patil"], inLanguage: ["mr-IN", "en-IN"] },
+                      { "@type": "Person", "@id": `${siteUrl}/#nirankush`, name: "निरांकुश", alternateName: ["Nirankush", "Ankush Patil", "अंकुश पाटील"], description: "Marathi poet, author of Sahyajinashi and technical architect.", url: `${siteUrl}/nirankush`, image: `${siteUrl}/author-profile.jpeg`, sameAs: ["https://www.instagram.com/nirankush/", "https://www.facebook.com/niraankush/", "https://www.youtube.com/@TheNirankushVoice", "https://www.threads.com/@nirankush", "https://in.linkedin.com/in/webdevankush"] },
+                      { "@type": "Book", "@id": `${siteUrl}/#sahyajinashi`, name: "सह्यजिनशी", alternateName: "Sahyajinashi", isbn: "9789348458896", inLanguage: "mr", url: `${siteUrl}/sahyajinashi`, image: `${siteUrl}/sahyadinashi.jpg`, author: { "@id": `${siteUrl}/#nirankush` } }
+                    ]
+                  }) }} />
                   {/* Google Analytics */}
                         <Script
                                     strategy="afterInteractive"
@@ -133,4 +152,5 @@ export default function RootLayout({
                         <Analytics />
                 </body>
           </html>
-                      </html>
+    );
+}

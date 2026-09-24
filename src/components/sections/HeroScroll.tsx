@@ -1,169 +1,107 @@
 'use client';
 
-import { useScroll, useTransform, motion, MotionValue, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import React, { useRef } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowDownRight, ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
 import { About } from '@/components/sections/About';
-import RevealText from "@/components/ui/reveal-text";
-import { LampContainer } from "@/components/ui/lamp";
 
-interface SectionProps {
-        scrollYProgress: MotionValue<number>;
+export function HeroScroll() {
+    const heroRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ['start start', 'end start'],
+    });
+
+    const portraitY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+    const titleY = useTransform(scrollYProgress, [0, 1], [0, 240]);
+    const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+
+    return (
+        <>
+            <motion.section
+                ref={heroRef}
+                style={{ opacity: contentOpacity }}
+                className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#050505] px-6 pb-12 pt-28 text-white md:px-12 lg:px-20"
+            >
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.10),transparent_34%)]" />
+                <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)] [background-size:72px_72px]" />
+
+                <motion.p
+                    style={{ y: titleY }}
+                    className="pointer-events-none absolute left-1/2 top-[43%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-crossten text-[19vw] font-bold uppercase leading-none tracking-[-0.07em] text-white/[0.055]"
+                    aria-hidden="true"
+                >
+                    Nirankush
+                </motion.p>
+
+                <div className="relative z-20 mx-auto grid w-full max-w-[1500px] items-end gap-10 lg:grid-cols-[1fr_minmax(380px,620px)_1fr]">
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className="order-2 max-w-sm self-center lg:order-1 lg:self-end lg:pb-16"
+                    >
+                        <p className="mb-5 font-khand text-xs font-semibold uppercase tracking-[0.32em] text-white/45">
+                            Systems Architect · Author
+                        </p>
+                        <h1 className="font-manrope text-4xl font-semibold leading-[0.98] tracking-[-0.05em] sm:text-5xl">
+                            I design systems with clarity and write stories with soul.
+                        </h1>
+                        <p className="mt-6 max-w-xs font-manrope text-sm leading-7 text-white/55">
+                            Nirankush is Ankush Patil — a technical architect, Marathi poet and author based in India.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        style={{ y: portraitY }}
+                        initial={{ opacity: 0, scale: 0.96, y: 30 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative order-1 mx-auto aspect-[4/5] w-full max-w-[560px] lg:order-2"
+                    >
+                        <div className="absolute inset-x-[8%] bottom-[5%] top-[16%] rounded-full bg-white/[0.07] blur-3xl" />
+                        <Image
+                            src="/heroimage2.png"
+                            alt="Nirankush — Ankush Patil"
+                            fill
+                            priority
+                            sizes="(max-width: 1024px) 90vw, 42vw"
+                            className="object-contain object-bottom drop-shadow-[0_28px_45px_rgba(0,0,0,0.65)]"
+                        />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        className="order-3 flex flex-col items-start gap-5 self-center lg:items-end lg:self-end lg:pb-16 lg:text-right"
+                    >
+                        <a
+                            href="#experience"
+                            className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 font-manrope text-xs font-semibold uppercase tracking-[0.2em] transition hover:border-white/35 hover:bg-white/10"
+                        >
+                            Explore my work
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </a>
+                        <a
+                            href="/nirankush"
+                            className="group inline-flex items-center gap-2 font-manrope text-xs uppercase tracking-[0.18em] text-white/55 transition hover:text-white"
+                        >
+                            Author profile
+                            <ArrowDownRight className="h-4 w-4" />
+                        </a>
+                        <p className="max-w-[260px] font-manrope text-xs leading-6 text-white/35">
+                            Building scalable products. Writing Marathi poetry rooted in history, identity and human experience.
+                        </p>
+                    </motion.div>
+                </div>
+
+                <div className="absolute bottom-5 left-6 z-20 font-manrope text-[10px] uppercase tracking-[0.28em] text-white/30 md:left-12 lg:left-20">
+                    © {new Date().getFullYear()} Nirankush
+                </div>
+            </motion.section>
+            <About />
+        </>
+    );
 }
-
-const Section1: React.FC<SectionProps> = ({ scrollYProgress }) => {
-        const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-        const rotate = useTransform(scrollYProgress, [0, 1], [0, -1]);
-        const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-        // Smooth mouse tracking
-        const mouseX = useMotionValue(0);
-        const mouseY = useMotionValue(0);
-
-        // Dynamic background mouse tracking for subtle spotlight
-        const bgMouseX = useMotionValue(0);
-        const bgMouseY = useMotionValue(0);
-
-        // Premium ultra-smooth trailing effect
-        const springX = useSpring(mouseX, { stiffness: 80, damping: 25 });
-        const springY = useSpring(mouseY, { stiffness: 80, damping: 25 });
-
-        const bgSpringX = useSpring(bgMouseX, { stiffness: 40, damping: 30 });
-        const bgSpringY = useSpring(bgMouseY, { stiffness: 40, damping: 30 });
-
-        const maskImage = useMotionTemplate`radial-gradient(circle 280px at ${springX}px ${springY}px, black 70%, transparent 100%)`;
-        const spotlightTransform = useMotionTemplate`translate(${bgSpringX}px, ${bgSpringY}px)`;
-
-        return (
-                    <motion.section
-                                    style={{ scale, rotate, opacity }}
-                                    className='sticky top-0 h-[100dvh] bg-[#050505] text-white flex flex-col items-center justify-center overflow-hidden z-0'
-                                    onMouseMove={({ clientX, clientY }) => {
-                                                        bgMouseX.set(clientX - window.innerWidth / 2);
-                                                        bgMouseY.set(clientY - window.innerHeight / 2);
-                                    }}
-                                >
-                        {/* 1. Ultra-Premium Ambient Lighting */}
-                                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                                    {/* Subtle spotlight following mouse */}
-                                                <motion.div
-                                                                        style={{ transform: spotlightTransform }}
-                                                                        className="absolute top-1/2 left-1/2 -ml-[30vw] -mt-[30vw] w-[60vw] h-[60vw] rounded-full bg-gray-500/[0.08] blur-[150px] pointer-events-none"
-                                                                    />
-                                </div>div>
-                    
-                                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pt-[5vh]">
-                                
-                                    {/* Massive Architectural Typography Background */}
-                                                <motion.div
-                                                                        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 250]) }}
-                                                                        className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none select-none flex items-center justify-center mix-blend-screen"
-                                                                    >
-                                                                    <h1
-                                                                                                className="font-crossten font-bold text-[16vw] md:text-[20vw] lg:text-[18vw] leading-[0.7] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent tracking-tighter select-none pointer-events-none pt-12 md:pt-4 uppercase"
-                                                                                                style={{ WebkitTextStroke: '2px rgba(255,255,255,0.05)' }}
-                                                                                            >
-                                                                                            Nirankush
-                                                                    </h1>h1>
-                                                </motion.div>motion.div>
-                                
-                                    {/* Central Image with Lamp Effect */}
-                                                <div className="absolute inset-0 z-10 w-full h-full flex flex-col items-center justify-center pt-24 pointer-events-none">
-                                                                    <div className="absolute top-[50%] -translate-y-1/2 w-[160%] h-[160%] z-0 pointer-events-none mix-blend-screen">
-                                                                                            <LampContainer>
-                                                                                                                                                <span className="hidden">Lamp Background</span>span>
-                                                                                                </LampContainer>LampContainer>
-                                                                    </div>div>
-                                                
-                                                                    <motion.div
-                                                                                                initial={{ opacity: 0, scale: 0.95, y: 50 }}
-                                                                                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                                                                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                                                                                                className="relative z-10 w-[75%] md:w-[700px] lg:w-[850px] aspect-[4/5] md:aspect-[4/5] flex items-end justify-center group pointer-events-auto"
-                                                                                                onMouseMove={({ currentTarget, clientX, clientY }) => {
-                                                                                                                                const { left, top } = currentTarget.getBoundingClientRect();
-                                                                                                                                mouseX.set(clientX - left);
-                                                                                                                                mouseY.set(clientY - top);
-                                                                                                    }}
-                                                                                            >
-                                                                        {/* Minimal corner brackets for structure */}
-                                                                                            <div className="absolute top-8 left-8 w-6 h-6 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:-translate-x-2 group-hover:-translate-y-2 mix-blend-screen pointer-events-none"></div>div>
-                                                                                            <div className="absolute bottom-16 right-8 w-6 h-6 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out group-hover:translate-x-2 group-hover:translate-y-2 mix-blend-screen pointer-events-none"></div>div>
-                                                                    
-                                                                        {/* Base Image (Flawless Grayscale) */}
-                                                                                            <img
-                                                                                                                            src="/heroimage.png"
-                                                                                                                            alt="Nirankush Patil Minimal"
-                                                                                                                            draggable={false}
-                                                                                                                            className="relative z-10 w-full h-full object-contain object-bottom filter grayscale contrast-[1.1] brightness-[0.8] drop-shadow-2xl transition-all duration-700 group-hover:brightness-100 opacity-90 pointer-events-none select-none"
-                                                                                                                        />
-                                                                    
-                                                                        {/* Overlay Image (Color - Elegantly Revealed) */}
-                                                                                            <motion.div
-                                                                                                                            className="absolute inset-0 z-20 w-full h-full pointer-events-none transition-opacity duration-700 opacity-0 group-hover:opacity-100"
-                                                                                                                            style={{
-                                                                                                                                                                maskImage: maskImage,
-                                                                                                                                                                WebkitMaskImage: maskImage,
-                                                                                                                                }}
-                                                                                                                        >
-                                                                                                                        <img
-                                                                                                                                                            src="/heroimage2.png"
-                                                                                                                                                            alt="Nirankush Patil Premium Color"
-                                                                                                                                                            draggable={false}
-                                                                                                                                                            className="w-full h-full object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] saturate-[1.2] contrast-[1.1] pointer-events-none select-none"
-                                                                                                                                                        />
-                                                                                                </motion.div>
-                                                                    </motion.div>
-                                                </div>
-                                
-                                    {/* Floating Architectural Presentation Blocks */}
-                                                    <div className="absolute top-[65%] md:top-[60%] w-full max-w-[1500px] px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-start md:items-center z-30 pointer-events-none gap-4 md:gap-0">
-                                                    
-                                                        {/* Left Block - Elegant Frosted Glass */}
-                                                                        <motion.div
-                                                                                                    initial={{ opacity: 0, x: -30 }}
-                                                                                                    animate={{ opacity: 1, x: 0 }}
-                                                                                                    transition={{ delay: 0.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                                                                                    className="hidden md:block max-w-[340px] text-left pointer-events-auto backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] p-6 lg:p-8 rounded-3xl shadow-2xl group hover:bg-white/[0.04] transition-colors duration-500"
-                                                                                                >
-                                                                                                <div className="w-12 h-[1px] bg-white/20 mb-6 group-hover:w-16 transition-all duration-500 ease-out"></div>div>
-                                                                                                <RevealText
-                                                                                                                                className="font-manrope text-[13px] lg:text-[15px] font-medium leading-[1.8] text-gray-400"
-                                                                                                                                delay={600}
-                                                                                                                                direction="up"
-                                                                                                                            >
-                                                                                                                            <span className="text-white font-semibold">Nirankush Patil</span>span> is a <span className="text-white font-semibold">Systems Architect</span>span> based in India. Translating complex problems into minimal, scalable digital experiences.
-                                                                                                    </RevealText>Text
-                                                                        </motion.div>
-                                                    
-                                                        {/* Right Block - Availability / Status */}
-                                                                        <motion.div
-                                                                                                    initial={{ opacity: 0, x: 30 }}
-                                                                                                    animate={{ opacity: 1, x: 0 }}
-                                                                                                    transition={{ delay: 1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                                                                                    className="max-w-[280px] lg:max-w-[300px] absolute right-6 md:relative md:right-0 bottom-4 md:bottom-auto text-right pointer-events-auto backdrop-blur-xl bg-white/[0.02] border border-white/[0.05] p-4 lg:p-8 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col items-end group hover:bg-white/[0.04] transition-colors duration-500"
-                                                                                                >
-                                                                                                <div className="flex items-center justify-start md:justify-end gap-3 mb-6">
-                                                                                                                            <div className="relative flex h-2 w-2">
-                                                                                                                                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>span>
-                                                                                                                                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>span>
-                                                                                                                                </div>
-                                                                                                                            <span className="text-[10px] uppercase tracking-[0.3em] font-khand font-bold text-gray-300">Available For Work</span>span                                         </div>div
-                                                                                                <p className="font-manrope text-[15px] font-medium leading-[1.8] text-gray-400">
-                                                                                                                            Engineering the exceptional with extreme attention to detail and performance architecture.
-                                                                                                    </p>
-                                                                        </motion.div>motion.div>
-                                                    </div>div>
-                                
-                                    {/* Minimal Footer & Scroll Indicator */}
-                                                <motion.div
-                                                                        initial={{ opacity: 0, y: 20 }}
-                                                                        animate={{ opacity: 1, y: 0 }}
-                                                                        transition={{ delay: 1.5, duration: 1 }}
-                                                                        className="hidden md:flex absolute bottom-8 w-full max-w-[1500px] px-8 md:px-12 lg:px-24 justify-between items-end text-[10px] uppercase tracking-[0.2em] font-manrope font-semibold text-gray-500 z-20"
-                                                                    >
-                                                                    <span className="select-none">&copy; NIRANKUSH {new Date().getFullYear()}</span>span>
-                                                
-                                                                    <div className="flex flex-col items-center gap-3">
-                                                                                            <span className="tracking-[0.4em]">Scroll</span>span>
-                                                                                            </div>

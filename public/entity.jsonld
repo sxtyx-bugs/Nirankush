@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.nirankush.com/#nirankush",
+  "name": "निरांकुश",
+  "alternateName": [
+    "Nirankush",
+    "Ankush Patil",
+    "अंकुश पाटील"
+  ],
+  "description": "Marathi poet, author of Sahyajinashi and technical architect.",
+  "url": "https://www.nirankush.com/nirankush",
+  "image": "https://www.nirankush.com/author-profile.jpeg",
+  "sameAs": [
+    "https://www.instagram.com/nirankush/",
+    "https://www.facebook.com/niraankush/",
+    "https://www.youtube.com/@TheNirankushVoice",
+    "https://www.threads.com/@nirankush",
+    "https://in.linkedin.com/in/webdevankush"
+  ]
+}

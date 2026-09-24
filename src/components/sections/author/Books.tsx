@@ -2,9 +2,6 @@
 
 import React, { useState, useRef, MouseEvent } from 'react';
 import { motion, useSpring } from "framer-motion";
-import { BookCard } from "@/components/ui/BookCard";
-import { LineShadowText } from "@/components/magicui/line-shadow-text";
-import { usePersona } from '@/context/PersonaContext';
 import { Highlighter } from "@/components/ui/highlighter";
 
 const books = [
@@ -27,9 +24,9 @@ const books = [
     {
         title: "सह्यजिनशी (Sahyajinashi)",
         theme: "Sahyadreechya Raktache Vanshaj",
-        year: "2024",
-        publisher: "Morpankh",
-        purchaseLink: "https://www.amazon.in/Sahyajinashi-%E0%A4%B8%E0%A4%B9%E0%A5%8D%E0%A4%AF%E0%A4%9C%E0%A4%BF%E0%A4%A8%E0%A4%B6%E0%A5%80-%E0%A4%B8%E0%A4%B9%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A5%80%E0%A4%9A%E0%A5%8D%E0%A4%AF%E0%A4%BE-%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%9A%E0%A5%8D%E0%A4%AF%E0%A4%BE-%E0%A4%B5%E0%A4%82%E0%A4%B6%E0%A4%9C/dp/B0FMFN6XZR/ref=sr_1_1?crid=6B6MHIF10N0D&dib=eyJ2IjoiMSJ9.gqZ_ldGnETG6ff5WHWhN3Bdr3mZLEi48pBV9K3XgFj3dQpBsoOQizBwyt6q_CEDpI9kvL7vAtA2GXg2M0DpNHsZIxsuHN_zOo4aElqS1V_WUufMwu3QuGnxiaWdnznxGX7c-pNKMgzkvvPbUZTFD9A.xKxFeHtR56t3q75JTOsx2ym3EzrdeLG746IgXdXEOqY&dib_tag=se&keywords=nirankush&qid=1771143001&sprefix=niranku%2Caps%2C337&sr=8-1",
+        year: "2nd Edition Soon",
+        publisher: "First Edition Sold",
+        purchaseLink: "/sahyajinashi",
         coverUrl: "/sahyadinashi.jpg"
     }
 ];
@@ -67,7 +64,7 @@ export function Books() {
         imagePos.y.set(relativeY - imageRef.current.offsetHeight / 2);
     };
 
-    const handleImageInteraction = (item: any, opacity: number) => {
+    const handleImageInteraction = (item: (typeof books)[number], opacity: number) => {
         setImg({ src: item.coverUrl, alt: item.title, opacity });
     };
 
@@ -99,8 +96,8 @@ export function Books() {
                         {books.map((book) => (
                             <a 
                                 href={book.purchaseLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                target={book.purchaseLink.startsWith('/') ? undefined : '_blank'}
+                                rel={book.purchaseLink.startsWith('/') ? undefined : 'noopener noreferrer'}
                                 key={book.title}
                                 onMouseEnter={() => handleImageInteraction(book, 1)}
                                 onMouseMove={() => handleImageInteraction(book, 1)}

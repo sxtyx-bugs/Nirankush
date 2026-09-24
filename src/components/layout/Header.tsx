@@ -11,23 +11,14 @@ import { User, Code, Briefcase, Mail, Menu, X, FileText, BookOpen, Feather, Sear
 import { Button } from '@/components/ui/Button';
 import { ResumeModal } from '@/components/ui/ResumeModal';
 import { CommandModal } from '@/components/ui/CommandModal';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
+    const pathname = usePathname();
     const { persona } = usePersona();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isResumeOpen, setIsResumeOpen] = useState(false);
     const [isCommandModalOpen, setIsCommandModalOpen] = useState(false);
-
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    // Handle scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     // Prevent body scroll when menu is open
     useEffect(() => {
@@ -52,6 +43,8 @@ export function Header() {
             { name: "Philosophy", url: "#philosophy", icon: Feather },
             { name: "Contact", url: "#contact", icon: Mail },
         ];
+
+    if (pathname !== '/') return null;
 
     return (
         <>
