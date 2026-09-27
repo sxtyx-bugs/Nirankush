@@ -3,7 +3,7 @@
   const campaign = {
     source: params.get('utm_source') || 'direct',
     medium: params.get('utm_medium') || 'website',
-    campaign: params.get('utm_campaign') || 'sahyajinashi_edition2',
+    campaign: params.get('utm_campaign') || 'sahyajinashi_book',
     content: params.get('utm_content') || 'homepage'
   };
   sessionStorage.setItem('nirankush_campaign', JSON.stringify(campaign));
@@ -14,7 +14,7 @@
     event.preventDefault();
     const data = new FormData(form);
     const message = [
-      "नमस्कार, मला ‘सह्यजिनशी’च्या द्वितीय आवृत्तीची प्रत राखायची आहे.",
+      "नमस्कार, मला ‘सह्यजिनशी’ पुस्तक मागवायचे आहे.",
       `नाव: ${data.get('name')}`,
       `मोबाईल: ${data.get('mobile')}`,
       `पिनकोड: ${data.get('pincode')}`,
