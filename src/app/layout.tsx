@@ -75,6 +75,7 @@ const palisade = localFont({
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
+    verification: { google: "iBtlA4ghThaBE5U3JDnxWqimaD5DXBBJp06FdqG6YqM" },
     title: { default: "Nirankush (Ankush Patil) | Marathi Poet & Sahyajinashi Author", template: "%s | Nirankush" },
     description: "Official website of Nirankush (Ankush Patil), Marathi poet and author of Sahyajinashi.",
     keywords: ["Nirankush", "निरांकुश", "Ankush Patil", "Marathi poet", "Marathi author", "Sahyajinashi", "सह्यजिनशी"],
