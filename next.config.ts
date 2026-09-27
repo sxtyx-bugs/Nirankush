@@ -16,6 +16,15 @@ const authorityRoutes = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    // Public file paths are implementation details; consolidate their signals
+    // on the same clean URLs used by links, the sitemap and canonical tags.
+    return authorityRoutes.map(([destination, source]) => ({
+      source,
+      destination,
+      permanent: true,
+    }));
+  },
   async rewrites() {
     return {
       beforeFiles: authorityRoutes.map(([source, destination]) => ({ source, destination })),

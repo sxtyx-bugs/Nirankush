@@ -28,12 +28,21 @@ export const personJsonLd = {
   name: "निरांकुश",
   alternateName: ["Nirankush", "Ankush Patil", "अंकुश पाटील", "Nirankush Ankush Patil"],
   description: "Marathi poet, author and performer; author of Sahyajinashi.",
-  jobTitle: ["Marathi poet", "Author", "Performer", "Technical Architect"],
+  jobTitle: ["Marathi poet", "Author", "Performer"],
   url: `${SITE_URL}/nirankush`,
   image: `${SITE_URL}/author-profile.jpeg`,
   sameAs,
-  knowsAbout: ["Marathi poetry", "Maharashtra", "Sahyadri", "Marathi literature", "Software architecture"],
+  knowsAbout: ["Marathi poetry", "Maharashtra", "Sahyadri", "Marathi literature"],
   mainEntityOfPage: `${SITE_URL}/nirankush`,
+};
+
+export const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE_URL}/nirankush#webpage`,
+  url: `${SITE_URL}/nirankush`,
+  name: "Nirankush (Ankush Patil) — Marathi Poet and Author",
+  mainEntity: personJsonLd,
 };
 
 export const bookJsonLd = {
@@ -49,4 +58,3 @@ export const bookJsonLd = {
   bookFormat: "https://schema.org/Paperback",
   url: `${SITE_URL}/sahyajinashi`,
 };
-

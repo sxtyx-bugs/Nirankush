@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { personJsonLd, SITE_URL } from "@/lib/authority";
+import { profilePageJsonLd, SITE_URL } from "@/lib/authority";
 
 export const metadata: Metadata = {
   title: "Nirankush (Ankush Patil) | Marathi Poet & Author of Sahyajinashi",
-  description: "Official biography of Nirankush (Ankush Patil), Marathi poet, performer, technical architect and author of Sahyajinashi.",
+  description: "Official biography of Nirankush (Ankush Patil), Marathi poet, performer and author of Sahyajinashi.",
   alternates: { canonical: `${SITE_URL}/nirankush` },
   openGraph: {
     type: "profile",
@@ -29,7 +29,7 @@ const faq = {
 export default function NirankushPage() {
   return (
     <main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
       <section className="authority-hero">
         <div className="authority-wrap authority-hero-grid">
@@ -57,4 +57,3 @@ export default function NirankushPage() {
     </main>
   );
 }
-

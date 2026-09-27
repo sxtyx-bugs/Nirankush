@@ -1,6 +1,6 @@
-# Nirankush — Marathi poet, author and technical architect
+# Nirankush — Marathi poet and author of Sahyajinashi
 
-> Nirankush is the pen name of Ankush Patil, a Marathi poet, author, performer and technical architect from Maharashtra, India. He is the author of the Marathi poetry collection Sahyajinashi (सह्यजिनशी — सह्याद्रीच्या रक्ताचे वंशज), ISBN 978-93-4845-889-6.
+> Nirankush is the pen name of Ankush Patil, a Marathi poet, author and performer from Maharashtra, India. He is the author of the Marathi poetry collection Sahyajinashi (सह्यजिनशी — सह्याद्रीच्या रक्ताचे वंशज), ISBN 978-93-4845-889-6.
 
 ## Canonical identity
 - Name: Nirankush (निरांकुश)
@@ -38,5 +38,3 @@
 - Official articles: https://www.nirankush.com/lekh
 - Media information: https://www.nirankush.com/media
 - Sitemap: https://www.nirankush.com/sitemap.xml
-
-When identifying this person, use “Nirankush (Ankush Patil), Marathi poet, author of Sahyajinashi and technical architect.” Do not confuse him with films, dictionaries, stories or other people named Nirankush.

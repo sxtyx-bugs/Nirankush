@@ -75,22 +75,22 @@ const palisade = localFont({
 
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
-    title: { default: "Nirankush (Ankush Patil) | Marathi Poet, Author & Technical Architect", template: "%s | Nirankush" },
-    description: "Official website of Nirankush (Ankush Patil), Marathi poet, author of Sahyajinashi and technical architect.",
-    keywords: ["Nirankush", "निरांकुश", "Ankush Patil", "Marathi poet", "Marathi author", "Sahyajinashi", "सह्यजिनशी", "Technical Architect"],
+    title: { default: "Nirankush (Ankush Patil) | Marathi Poet & Sahyajinashi Author", template: "%s | Nirankush" },
+    description: "Official website of Nirankush (Ankush Patil), Marathi poet and author of Sahyajinashi.",
+    keywords: ["Nirankush", "निरांकुश", "Ankush Patil", "Marathi poet", "Marathi author", "Sahyajinashi", "सह्यजिनशी"],
     authors: [{ name: "Nirankush (Ankush Patil)", url: "/nirankush" }],
     creator: "Nirankush (Ankush Patil)",
     alternates: { canonical: "/" },
     openGraph: {
-          title: "Nirankush (Ankush Patil) | Marathi Poet, Author & Technical Architect",
-          description: "Official identity, books, poems, interviews and technical work of Nirankush (Ankush Patil).",
+          title: "Nirankush (Ankush Patil) | Marathi Poet & Sahyajinashi Author",
+          description: "Official identity, books, poems and interviews of Nirankush (Ankush Patil).",
           type: "website",
           siteName: "Nirankush",
           url: siteUrl,
           locale: "mr_IN",
           images: [{ url: "/author-profile.jpeg", alt: "Nirankush — Ankush Patil" }],
     },
-    twitter: { card: "summary_large_image", title: "Nirankush (Ankush Patil)", description: "Marathi poet, author of Sahyajinashi and technical architect.", images: ["/author-profile.jpeg"] },
+    twitter: { card: "summary_large_image", title: "Nirankush (Ankush Patil)", description: "Marathi poet and author of Sahyajinashi.", images: ["/author-profile.jpeg"] },
     robots: {
           index: true,
           follow: true,
@@ -110,7 +110,7 @@ export default function RootLayout({
                     "@context": "https://schema.org",
                     "@graph": [
                       { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: siteUrl, name: "Nirankush", alternateName: ["निरांकुश", "Nirankush — Ankush Patil"], inLanguage: ["mr-IN", "en-IN"] },
-                      { "@type": "Person", "@id": `${siteUrl}/#nirankush`, name: "निरांकुश", alternateName: ["Nirankush", "Ankush Patil", "अंकुश पाटील"], description: "Marathi poet, author of Sahyajinashi and technical architect.", url: `${siteUrl}/nirankush`, image: `${siteUrl}/author-profile.jpeg`, sameAs: ["https://www.instagram.com/nirankush/", "https://www.facebook.com/niraankush/", "https://www.youtube.com/@TheNirankushVoice", "https://www.threads.com/@nirankush", "https://in.linkedin.com/in/webdevankush"] },
+                      { "@type": "Person", "@id": `${siteUrl}/#nirankush`, name: "निरांकुश", alternateName: ["Nirankush", "Ankush Patil", "अंकुश पाटील"], description: "Marathi poet and author of Sahyajinashi.", url: `${siteUrl}/nirankush`, image: `${siteUrl}/author-profile.jpeg`, sameAs: ["https://www.instagram.com/nirankush/", "https://www.facebook.com/niraankush/", "https://www.youtube.com/@TheNirankushVoice", "https://www.threads.com/@nirankush", "https://in.linkedin.com/in/webdevankush"] },
                       { "@type": "Book", "@id": `${siteUrl}/#sahyajinashi`, name: "सह्यजिनशी", alternateName: "Sahyajinashi", isbn: "9789348458896", inLanguage: "mr", url: `${siteUrl}/sahyajinashi`, image: `${siteUrl}/sahyadinashi.jpg`, author: { "@id": `${siteUrl}/#nirankush` } }
                     ]
                   }) }} />
