@@ -8,6 +8,16 @@
   };
   sessionStorage.setItem('nirankush_campaign', JSON.stringify(campaign));
 
+  const directOrder = document.querySelector('.direct-order');
+  if (directOrder) {
+    const directMessage = [
+      "नमस्कार, मला ‘सह्यजिनशी’ पुस्तक मागवायचे आहे.",
+      "कृपया किंमत, पाठवणी आणि पेमेंटची माहिती पाठवा.",
+      `स्रोत: ${campaign.source}/${campaign.medium}/${campaign.campaign}/${campaign.content}`
+    ].join('\n');
+    directOrder.href = `https://wa.me/918983539860?text=${encodeURIComponent(directMessage)}`;
+  }
+
   const form = document.querySelector('#reserve-form');
   if (!form) return;
   form.addEventListener('submit', (event) => {
