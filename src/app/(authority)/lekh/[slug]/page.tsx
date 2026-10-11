@@ -23,17 +23,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
+  const updatedOn = ["sahyajinashi-marathi-kavyasangrah", "sahyajinashi-dusari-avritti"].includes(slug)
+    ? "2026-10-11"
+    : "2026-09-24";
   const articleJsonLd = {
     "@context":"https://schema.org", "@type":"Article", headline:article.title, description:article.short,
-    inLanguage:"mr-IN", datePublished:"2026-09-24", dateModified:"2026-09-24", mainEntityOfPage:`${SITE_URL}/lekh/${slug}`,
+    inLanguage:"mr-IN", datePublished:"2026-09-24", dateModified:updatedOn, mainEntityOfPage:`${SITE_URL}/lekh/${slug}`,
     image:`${SITE_URL}/sahyadinashi.jpg`, author:{"@id":AUTHOR_ID}, publisher:{"@id":AUTHOR_ID},
     about:[{"@type":"Person","@id":AUTHOR_ID},{"@type":"Book","@id":`${SITE_URL}/#sahyajinashi`}],
   };
   return <main>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
-    <section className="authority-hero"><div className="authority-wrap"><div className="authority-eyebrow">{article.eyebrow}</div><h1>{article.title}</h1><p className="authority-lead">{article.short}</p><p>लेखक: निरांकुश • 24 सप्टेंबर 2026</p></div></section>
+    <section className="authority-hero"><div className="authority-wrap"><div className="authority-eyebrow">{article.eyebrow}</div><h1>{article.title}</h1><p className="authority-lead">{article.short}</p><p>लेखक: निरांकुश • प्रकाशित: 24 सप्टेंबर 2026{updatedOn !== "2026-09-24" ? " • अद्ययावत: 11 ऑक्टोबर 2026" : ""}</p></div></section>
     <section className="authority-section"><div className="authority-wrap authority-article"><article className="authority-prose" dangerouslySetInnerHTML={{ __html: article.body }} /><aside className="authority-aside"><Image src="/sahyadinashi.jpg" width={820} height={1328} alt="सह्यजिनशी पुस्तकाचे मुखपृष्ठ" /><div className="authority-card"><strong>अधिकृत माहिती</strong><p>लेखक: निरांकुश<br />पुस्तक: सह्यजिनशी<br />ISBN: 978-93-4845-889-6</p><Link href="/sahyajinashi">पुस्तक पृष्ठ →</Link></div></aside></div></section>
     <section className="authority-section authority-section-dark"><div className="authority-wrap"><h2>सह्यजिनशी पुस्तक मागवा</h2><p>सह्यजिनशीची प्रत मागवण्यासाठी अधिकृत WhatsApp क्रमांकावर संपर्क करा.</p><a className="authority-button red" href="https://wa.me/918983539860">WhatsApp संपर्क</a></div></section>
   </main>;
 }
-

@@ -21,7 +21,7 @@ export default function SahyajinashiPage() {
     </div><Image className="authority-book-cover" src="/sahyadinashi.jpg" width={820} height={1328} priority alt="सह्यजिनशी — सह्याद्रीच्या रक्ताचे वंशज पुस्तकाचे मुखपृष्ठ" /></div></section>
     <section className="authority-section"><div className="authority-wrap authority-grid">
       <div className="authority-card"><h2>परिचित कविता</h2><p>मी मराठा त्या जातीचा<br />गोष्ट ही सिंहाची नाही<br />घालू मुजरे रायगडी<br />पावनखिंड<br />मर्द रांगडा</p></div>
-      <div className="authority-card"><h2>आवृत्ती</h2><p>पहिल्या आवृत्तीच्या सर्व प्रती वाचकांपर्यंत पोहोचल्या आहेत. आपली प्रत मागवण्यासाठी WhatsAppवर संपर्क करा.</p></div>
+      <div className="authority-card"><h2>उपलब्धता</h2><p><strong>‘सह्यजिनशी’ पुस्तक उपलब्ध आहे.</strong> आपली प्रत मागवण्यासाठी WhatsAppवर संपर्क करा.</p></div>
       <div className="authority-card"><h2>पुस्तक माहिती</h2><p>लेखक: निरांकुश<br />ISBN: 978-93-4845-889-6<br />प्रकार: मराठी काव्यसंग्रह<br />ऑर्डर: अधिकृत WhatsApp संपर्क</p></div>
     </div></section>
     <section className="authority-section authority-section-dark"><div className="authority-wrap"><h2>तुम्ही कविता ओळखता. आता पुस्तकाला भेटा.</h2><p>लोकप्रिय ध्वनिचित्रफितीतून भेटलेल्या कविता पुस्तकात व्यापक काव्यविश्वाचा भाग म्हणून वाचता येतात.</p><Link className="authority-button red" href="/lekh/sahyajinashi-marathi-kavyasangrah">पुस्तक परिचय वाचा</Link></div></section>
